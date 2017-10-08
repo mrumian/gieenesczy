@@ -2,23 +2,24 @@ from .session import Session
 from src.utils import *
 import logging as log
 from requests import codes as CODE
-from src.structures.project import Project
+from .projects import Project
 
 
-class Projects(Session):
+class Links(Session):
     def __init__(self):
         super().__init__()
         self.session = Session().session
         self.address = Session().address
+        self.link = Links()
         self.project = Project()
 
-    def create_project(self):
-        log.debug('Creating project)
+    def create_link(self):
+        log.debug('Creating link')
 
-        res = self.project.loads(
-            post_json(self.session, self.address, '/projects', data, expected_status_code=CODE.created))
+        res = self.link.loads(post_json(self.session, self.address, '/projects/%s/links' % self.project., data, expected_status_code=CODE.created))
 
         print(res.data)
+
 
     def load_project(self, path, **kwargs):
         log.debug('Loading project from: %s' % path)
