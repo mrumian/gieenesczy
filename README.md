@@ -1,3 +1,8 @@
 # gieenesczy
+Code UI for GNS3 server.
 
-Require gns3server installed.
+## Installation
+> pip install -r requirements.txt
+
+## Usage
+python3 gieenesczy.py
