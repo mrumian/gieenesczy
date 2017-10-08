@@ -1,13 +1,11 @@
-from src.requests.projects import Projects
-from src.requests.version import Version
+from src.requests.project import Project as ProjReq
+from src.structures.project import Project as ProjStruct
 import logging as log
-from src.structures.project import Project
-from pprint import pprint
 
 log.basicConfig(level=log.DEBUG)
 
-#ver = Version()
-#x = ver.get_version()
+stru = ProjStruct(name='gienesczy')
 
-proj = Projects()
-proj.create_project('dasdasddddddaaaupa')
+proj = ProjReq()
+
+proj.create_project(stru.json)

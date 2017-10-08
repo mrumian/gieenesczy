@@ -9,7 +9,6 @@ class Project(Session):
         super().__init__()
         self.session = Session().session
         self.address = Session().address
-        self.project = Project()
 
     # http://gns3-server.readthedocs.io/en/latest/api/v2/controller/project/projects.html
     def create_project(self, data):

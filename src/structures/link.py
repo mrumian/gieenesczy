@@ -7,14 +7,14 @@ from src.enums import data_link_type
 # http://gns3-server.readthedocs.io/en/latest/api/v2/controller/link.html
 
 
-class Links(Schema):
+class Link(Schema):
     capture_file_name = fields.Str()
     capture_file_path = fields.Str()
     data_link_type = EnumField(data_link_type)
     capturing = fields.Bool()
     link_id = fields.UUID
     link_type = EnumField(link_type)
-    nodes = [fields.Nested(Node)]
+    nodes = fields.Nested(Node, many=True)
     project_id = fields.UUID
 
 
