@@ -2,14 +2,15 @@ from marshmallow import Schema, fields
 from marshmallow_enum import EnumField
 
 from src.enums import link_type
+from src.enums import data_link_type
 
-
-# http://gns3-server.readthedocs.io/en/latest/api/v2/controller/link/projectsprojectidlinks.html
+# http://gns3-server.readthedocs.io/en/latest/api/v2/controller/link.html
 
 
 class Links(Schema):
     capture_file_name = fields.Str()
     capture_file_path = fields.Str()
+    data_link_type = EnumField(data_link_type)
     capturing = fields.Bool()
     link_id = fields.UUID
     link_type = EnumField(link_type)
