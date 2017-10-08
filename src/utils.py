@@ -1,5 +1,4 @@
 import uuid
-from requests import codes as CODE
 import logging as log
 
 
@@ -9,7 +8,7 @@ def generate_uuid():
     return generated_uuid
 
 
-def post_json(session, core_address, path, data, expected_status_code=200):
+def post(session, core_address, path, data, expected_status_code):
     log.debug('Post action\n'
               'Address: %s\n'
               'Data: %s' % (core_address + path, data))
@@ -27,13 +26,13 @@ def post_json(session, core_address, path, data, expected_status_code=200):
         return response.text
 
 
-def get(session, core_addres, path):
+def get(session, core_addres, path, expected_status_code):
     log.debug('Get action\n'
               'Address: %s' % core_addres + path)
 
     response = session.get(core_addres + path)
 
-    if response.status_code == CODE.ok:
+    if response.status_code == expected_status_code:
         log.debug('Get success')
         log.debug('Response content: %s' % response.json())
         return True
@@ -44,17 +43,34 @@ def get(session, core_addres, path):
         return False
 
 
-def delete(session, core_address, path):
+def delete(session, core_address, path, expected_status_code):
     log.debug('Delete action\n'
               'Address: %s' % core_address + path)
 
     response = session.delete(core_address + path)
 
-    if response.status_code == CODE.no_content:
+    if response.status_code == expected_status_code:
         log.debug('Delete success')
         log.debug('Response content: %s' % response.json())
         return True
     else:
         log.error('Delete action encountered problems\n'
+                  'Status code: %d\n'
+                  'Message: %s' % (response.status_code, response.json()))
+
+
+def put(session, core_address, path, data, expected_status_code):
+    log.debug('Put action\n'
+              'Address: %s\n'
+              'Data: %s' % (core_address + path, data))
+
+    response = session.put(core_address + path, data)
+
+    if response.status_code == expected_status_code:
+        log.debug('Put success')
+        log.debug('Response content: %s' % response.json())
+        return True
+    else:
+        log.error('Put action encountered problems\n'
                   'Status code: %d\n'
                   'Message: %s' % (response.status_code, response.json()))
