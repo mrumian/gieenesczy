@@ -19,12 +19,12 @@ def post_json(session, core_address, path, data, expected_status_code=200):
     if response.status_code == expected_status_code:
         log.debug('Post success')
         log.debug('Response content: %s' % response.json())
-        return True
+        return response.text
     else:
         log.error('Post action encountered problems\n'
                   'Status code: %d\n'
                   'Message: %s' % (response.status_code, response.json()))
-        return False
+        return response.text
 
 
 def get(session, core_addres, path):
