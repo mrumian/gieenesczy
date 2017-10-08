@@ -1,7 +1,10 @@
 from marshmallow import Schema, fields
+from marshmallow_enum import EnumField
+
+from src.enums import project_status
 
 
-# http://gns3-server.readthedocs.io/en/latest/api/v2/controller/project/projects.html#post-v2-projects
+# http://gns3-server.readthedocs.io/en/latest/api/v2/controller/project.html
 
 class Project(Schema):
     auto_close = fields.Bool()
@@ -13,4 +16,4 @@ class Project(Schema):
     project_id = fields.UUID()
     scene_height = fields.Int()
     scene_width = fields.Int()
-    status = fields.Str()
+    status = EnumField(project_status)

@@ -1,7 +1,7 @@
+from requests import codes as CODE
+
 from .session import Session
 from src.utils import *
-import logging as log
-from requests import codes as CODE
 
 # http://gns3-server.readthedocs.io/en/latest/api/v2/controller/link.html
 
