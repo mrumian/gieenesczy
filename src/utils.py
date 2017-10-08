@@ -42,3 +42,19 @@ def get(session, core_addres, path):
                   'Status code: %d\n'
                   'Message: %s' % (response.status_code, response.json()))
         return False
+
+
+def delete(session, core_address, path):
+    log.debug('Delete action\n'
+              'Address: %s' % core_address + path)
+
+    response = session.delete(core_address + path)
+
+    if response.status_code == CODE.no_content:
+        log.debug('Delete success')
+        log.debug('Response content: %s' % response.json())
+        return True
+    else:
+        log.error('Delete action encountered problems\n'
+                  'Status code: %d\n'
+                  'Message: %s' % (response.status_code, response.json()))

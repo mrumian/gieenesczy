@@ -21,12 +21,7 @@ class Links(Session):
         print(res.data)
 
 
-    def load_project(self, path, **kwargs):
-        log.debug('Loading project from: %s' % path)
+    def delete_link(self, link_uuid):
+        log.debug('Deleting link')
 
-        data = {
-            'path': path
-        }
-        data.update(kwargs)
-
-        post_json(self.session, self.address, '/projects/load', data, expected_status_code=CODE.created)
+        delete(self.session, self.address, '/projects/%s/links/%s' %(proj_uuid, link_uuid))
