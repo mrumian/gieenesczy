@@ -1,8 +1,9 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
 from marshmallow_enum import EnumField
 
 from src.enums import link_type
 from src.enums import data_link_type
+from .schema import Schema
 
 # http://gns3-server.readthedocs.io/en/latest/api/v2/controller/link.html
 

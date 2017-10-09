@@ -1,25 +1,22 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
 from marshmallow_enum import EnumField
-import logging as log
 
 from src.enums import project_status
+from .schema import Schema
 
 
 # http://gns3-server.readthedocs.io/en/latest/api/v2/controller/project.html
 
 class Project:
     def __init__(self, **kwargs):
-        self.schema = ProjectSchema()
+        self.schema = ProjectSchema(strict=True)
         self.data = kwargs
         self.json = self._to_json()
 
     def _to_json(self):
-        json, error = self.schema.dump(self.data)
+        self.schema.validate(self.data)
 
-        if error:
-            raise ValueError('Error occurred during deserialization: %s' % error)
-        else:
-            return json
+        return self.schema.dump(self.data).data
 
 
 class ProjectSchema(Schema):
