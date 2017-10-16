@@ -18,12 +18,12 @@ def post(session, core_address, path, data, expected_status_code):
     if response.status_code == expected_status_code:
         log.debug('Post success')
         log.debug('Response content: %s' % response.json())
-        return response.text
+        return response.json()
     else:
         log.error('Post action encountered problems\n'
                   'Status code: %d\n'
                   'Message: %s' % (response.status_code, response.json()))
-        return response.text
+        return response.json()
 
 
 def get(session, core_addres, path, expected_status_code):
@@ -35,12 +35,12 @@ def get(session, core_addres, path, expected_status_code):
     if response.status_code == expected_status_code:
         log.debug('Get success')
         log.debug('Response content: %s' % response.json())
-        return True
+        return response.json()
     else:
         log.error('Get action encountered problems\n'
                   'Status code: %d\n'
                   'Message: %s' % (response.status_code, response.json()))
-        return False
+        return response.json()
 
 
 def delete(session, core_address, path, expected_status_code):
@@ -52,7 +52,7 @@ def delete(session, core_address, path, expected_status_code):
     if response.status_code == expected_status_code:
         log.debug('Delete success')
         log.debug('Response content: %s' % response.json())
-        return True
+        return response.json()
     else:
         log.error('Delete action encountered problems\n'
                   'Status code: %d\n'
@@ -69,7 +69,7 @@ def put(session, core_address, path, data, expected_status_code):
     if response.status_code == expected_status_code:
         log.debug('Put success')
         log.debug('Response content: %s' % response.json())
-        return True
+        return response.json()
     else:
         log.error('Put action encountered problems\n'
                   'Status code: %d\n'
