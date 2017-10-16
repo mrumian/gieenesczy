@@ -17,3 +17,32 @@ class DataLinkType(Enum):
 class LinkType(Enum):
     ETHERNET = 'ethernet'
     SERIAL = 'serial'
+
+
+class NodeType(Enum):
+    cloud = 'cloud'
+    nat = 'nat'
+    ethernet_hub = 'ethernet_hub'
+    ethernet_switch = 'ethernet_switch'
+    frame_relay_switch = 'frame_relay_switch'
+    atm_switch = 'atm_switch'
+    docker = 'docker'
+    dynamips = 'dynamips'
+    vpcs = 'vpcs'
+    virtualbox = 'virtualbox'
+    vmware = 'vmware'
+    iou = 'iou'
+    qemu = 'qemu'
+
+
+class NodeStatus(Enum):
+    stopped = 'stopped'
+    started = 'started'
+    suspended = 'suspended'
+
+
+class ConsoleType(Enum):
+    vnc = 'vnc'
+    telnet = 'telnet'
+    http = 'http'
+    null = 'null'
