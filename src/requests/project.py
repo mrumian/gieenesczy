@@ -8,10 +8,10 @@ class Project(Session):
     project_data = None
     projects_list = None
 
-    def __init__(self):
+    def __init__(self, session):
         super().__init__()
-        self.session = Session().session
-        self.address = Session().address
+        self.session = session.session
+        self.address = session.address
 
     # http://gns3-server.readthedocs.io/en/latest/api/v2/controller/project/projects.html
     def create_project(self, data):
