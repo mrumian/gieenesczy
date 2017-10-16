@@ -1,11 +1,19 @@
-from src.requests.project import Project as ProjReq
-from src.structures.project import Project as ProjStruct
+from src.requests.project import Project as ProjectRequests
+from src.structures.project import Project
+
 import logging as log
+
 
 log.basicConfig(level=log.DEBUG)
 
-stru = ProjStruct(name='gienesczy')
+# Create Project instance
+project = ProjectRequests()
 
-proj = ProjReq()
+# Set Input data for Project
+project_data = Project(name='demo_name')
 
-proj.create_project(stru.json)
+# Create Project
+project.create_project(project_data.json)
+
+# Get Project UUID
+project_uuid = project.get_project_uuid()
