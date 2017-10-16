@@ -1,7 +1,7 @@
 from marshmallow import fields
 from marshmallow_enum import EnumField
 
-from src.enums import project_status
+from src.enums.enums import ProjectStatus
 from .schema import Schema
 
 
@@ -29,4 +29,9 @@ class ProjectSchema(Schema):
     project_id = fields.UUID()
     scene_height = fields.Int()
     scene_width = fields.Int()
-    status = EnumField(project_status)
+    status = EnumField(ProjectStatus)
+    zoom = fields.Int()
+    show_grid = fields.Bool()
+    show_layers = fields.Bool()
+    show_interface_labels = fields.Bool()
+    snap_to_grid = fields.Bool()

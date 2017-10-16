@@ -2,6 +2,7 @@ from requests import codes as CODE
 
 from .session import Session
 from src.utils import *
+from src.structures.project import ProjectSchema
 
 
 class Project(Session):
@@ -9,6 +10,7 @@ class Project(Session):
         super().__init__()
         self.session = Session().session
         self.address = Session().address
+        self.project_schema = ProjectSchema()
 
     # http://gns3-server.readthedocs.io/en/latest/api/v2/controller/project/projects.html
     def create_project(self, data):
@@ -17,7 +19,7 @@ class Project(Session):
         expected_status_code = CODE.created
         link = '/projects'
 
-        post(self.session, self.address, link, data, expected_status_code)
+        return post(self.session, self.address, link, data, expected_status_code)
 
     def get_all_projects(self):
         log.debug('Get all projects')
