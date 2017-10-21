@@ -46,3 +46,8 @@ class ConsoleType(Enum):
     telnet = 'telnet'
     http = 'http'
     null = 'null'
+
+
+class Protocol(Enum):
+    http = 'http'
+    https = 'https'
