@@ -29,7 +29,7 @@ class ProjectSchema(Schema):
     project_id = fields.UUID()
     scene_height = fields.Int()
     scene_width = fields.Int()
-    status = EnumField(ProjectStatus)
+    status = EnumField(ProjectStatus, by_value=True)
     zoom = fields.Int()
     show_grid = fields.Bool()
     show_layers = fields.Bool()

@@ -1,7 +1,7 @@
 from marshmallow import fields
 from marshmallow_enum import EnumField
 
-from .schema import Schema
+from src.structures.schema import Schema
 from src.enums.enums import NodeStatus, NodeType, ConsoleType
 from src.structures.sub_structers.label import Label
 from src.structures.sub_structers.port import Port
@@ -25,20 +25,20 @@ class NodeSchema(Schema):
     compute_id = fields.Str()
     console = fields.Int()
     console_host = fields.Str()
-    console_type = EnumField(ConsoleType)
+    console_type = EnumField(ConsoleType, by_value=True)
     first_port_name = fields.Str()
     height = fields.Int()
     label = fields.Nested(Label)
     name = fields.Str()
     node_directory = fields.Str()
     node_id = fields.UUID()
-    node_type = EnumField(NodeType)
+    node_type = EnumField(NodeType, by_value=True)
     port_name_format = fields.Str()
     port_segment_size = fields.Str()
     ports = fields.Nested(Port, many=True)
     project_id = fields.UUID()
     properties = fields.Nested(NodeProperties)
-    status = EnumField(NodeStatus)
+    status = EnumField(NodeStatus, by_value=True)
     symbol = fields.Str()
     width = fields.Int()
     x = fields.Int()
